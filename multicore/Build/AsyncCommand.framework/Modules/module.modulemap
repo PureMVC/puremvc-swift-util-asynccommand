@@ -1,0 +1,3 @@
+framework module AsyncCommand {
+    header "AsyncCommand-Swift.h"
+}
