@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>AsyncProxy Class Reference</title>
+    <title>AsyncMacroCommand Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,19 +9,19 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/AsyncProxy" class="dashAnchor"></a>
-    <a title="AsyncProxy Class Reference"></a>
+    <a name="//apple_ref/swift/Class/AsyncMacroCommand" class="dashAnchor"></a>
+    <a title="AsyncMacroCommand Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
-        <p class="header-right"><a href="https://github.com/PureMVC/puremvc-swift-util-asyncproxy/wiki"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="https://github.com/PureMVC/puremvc-swift-util-asynccommand/multicore"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        AsyncProxy Class Reference
+        AsyncMacroCommand Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -31,7 +31,10 @@
           <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/AsyncProxy.html">AsyncProxy</a>
+                <a href="../Classes/AsyncCommand.html">AsyncCommand</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncMacroCommand.html">AsyncMacroCommand</a>
               </li>
             </ul>
           </li>
@@ -39,10 +42,7 @@
           <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/IAsyncProxy.html">IAsyncProxy</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/IResponder.html">IResponder</a>
+                <a href="../Protocols/IAsyncCommand.html">IAsyncCommand</a>
               </li>
             </ul>
           </li>
@@ -51,21 +51,33 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>AsyncProxy</h1>
-            <p>A base <code>IAsyncProxy</code> implementation.</p>
+            <h1>AsyncMacroCommand</h1>
+            <p>A base <code>ICommand</code> implementation that executes other
+<code>ICommand</code>s asynchronously.</p>
 
-<p>It allows the creator to associate data (a token) 
-and methods that should be called when a request is completed.</p>
+<p>An <code>AsyncMacroCommand</code> maintains a list of
+closures returning <code>ICommand</code> references called <em>SubCommands</em>.</p>
 
-<p>Your subclass should override the <code>asyncAction</code>
-method where your domain logic will handle the async operation. 
-Must call super to set responder and the token.</p>
+<p>When <code>execute</code> is called, the <code>AsyncMacroCommand</code>
+caches a reference to the <code>INotification</code> and calls
+<code>nextCommand</code>.</p>
 
-<p>Instantiate as a proxy, with or without a name. The async activity 
-is started by invoking the <code>asyncAction</code> method. There
-cannot be more than one activity running per instance.</p>
+<p>If there are still <em>SubCommands&rsquo;s to be executed,
+the <code>nextCommand</code> method instantiates and calls <code>execute</code>
+on each of its *SubCommands</em> in turn. Each <em>SubCommand</em> will be passed
+a reference to the original <code>INotification</code> that was passed to the
+<code>AsyncMacroCommand</code>&rsquo;s <code>execute</code> method. If the
+<em>SubCommand</em> to execute is an <code>IAsyncCommand</code>, the
+next <em>SubCommand</em> will not be executed until the previous
+<code>IAsyncCommand</code> has called its <em>commandComplete</em> method.</p>
 
-<p><code>@see org.puremvc.swift.multicore.utilities.asyncproxy.patterns.proxy.AsyncProxy AsyncProxy</code></p>
+<p>Unlike <code>AsyncCommand</code> and <code>SimpleCommand</code>, your subclass
+should not override <code>execute</code>, but instead, should
+override the <code>initializeAsyncMacroCommand</code> method,
+calling <code>addSubCommand</code> once for each <em>SubCommand</em>
+to be executed.</p>
+
+<p><code>@see org.puremvc.as3.multicore.patterns.command.AsyncCommand AsyncCommand</code></p>
 
           </section>
           <section class="section task-group-section">
@@ -74,9 +86,9 @@ cannot be more than one activity running per instance.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC10AsyncProxy10AsyncProxy12PROGRESS_MSGSS"></a>
-                    <a name="//apple_ref/swift/Variable/PROGRESS_MSG" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC10AsyncProxy10AsyncProxy12PROGRESS_MSGSS">PROGRESS_MSG</a>
+                    <a name="/s:FC12AsyncCommand17AsyncMacroCommandcERR"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12AsyncCommand17AsyncMacroCommandcERR">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -84,14 +96,21 @@ cannot be more than one activity running per instance.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Message constant if an async activity is already in progress for this instance</p>
+                        <p>Constructor.</p>
+
+<p>You should not need to define a constructor,
+instead, override the <code>initializeAsyncMacroCommand</code>
+method.</p>
+
+<p>If your subclass does define a constructor, be
+sure to call <code>super()</code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">PROGRESS_MSG</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="s">"Async activity already in progress for this instance!"</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -101,9 +120,9 @@ cannot be more than one activity running per instance.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10AsyncProxy10AsyncProxycFMS0_FT4nameGSqSS__S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(name:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10AsyncProxy10AsyncProxycFMS0_FT4nameGSqSS__S0_">init(name:)</a>
+                    <a name="/s:FC12AsyncCommand17AsyncMacroCommand27initializeAsyncMacroCommandFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/initializeAsyncMacroCommand()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12AsyncCommand17AsyncMacroCommand27initializeAsyncMacroCommandFS0_FT_T_">initializeAsyncMacroCommand()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -111,14 +130,31 @@ cannot be more than one activity running per instance.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Constructor</p>
+                        <p>Initialize the <code>AsyncMacroCommand</code>.</p>
+
+<p>In your subclass, override this method to
+initialize the <code>AsyncMacroCommand</code>&rsquo;s <em>SubCommand</em>
+list with <code>ICommand</code> class references.</p>
+
+<pre class="highlight plaintext"><code>// Initialize MyMacroCommand
+override public func initializeAsyncMacroCommand()
+{
+    addSubCommand( { FirstCommand() } )
+    addSubCommand( { SecondCommand() } )
+    addSubCommand { ThirdCommand() } //trailing closure style
+}
+</code></pre>
+
+<p>Note that <em>SubCommands</em> may be any closure returning <code>ICommand</code> implementor,
+<code>AsyncMacroCommand</code>s, <code>AsyncCommand</code>s,
+<code>MacroCommand</code>s or <code>SimpleCommand</code>s are all acceptable.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span><span class="o">=</span><span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initializeAsyncMacroCommand</span><span class="p">()</span> <span class="p">{}</span></code></pre>
 
                         </div>
                       </div>
@@ -128,9 +164,9 @@ cannot be more than one activity running per instance.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10AsyncProxy10AsyncProxy11asyncActionFS0_FTPS_10IResponder_5tokenGSqP___T_"></a>
-                    <a name="//apple_ref/swift/Method/asyncAction(_:token:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10AsyncProxy10AsyncProxy11asyncActionFS0_FTPS_10IResponder_5tokenGSqP___T_">asyncAction(_:token:)</a>
+                    <a name="/s:FC12AsyncCommand17AsyncMacroCommand13addSubCommandERR"></a>
+                    <a name="//apple_ref/swift/Method/addSubCommand(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12AsyncCommand17AsyncMacroCommand13addSubCommandERR">addSubCommand(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -138,14 +174,17 @@ cannot be more than one activity running per instance.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initiate an async activity and bind result/fault handlers to it</p>
+                        <p>Add a <em>SubCommand</em>.</p>
+
+<p>The <em>SubCommands</em> will be called in First In/First Out (FIFO)
+order.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asyncAction</span><span class="p">(</span><span class="nv">responder</span><span class="p">:</span> <span class="kt">IResponder</span><span class="p">,</span> <span class="nv">token</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addSubCommand</span><span class="p">(</span><span class="nv">closure</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ICommand</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -156,25 +195,12 @@ cannot be more than one activity running per instance.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>responder</em>
+                                <em>closure</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>IResponder type providing result and fault functions</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>token</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Additional information to associate with this request.</p>
+                                  <p>reference returning <code>ICommand</code>.</p>
 
                                 </div>
                               </td>
@@ -188,9 +214,9 @@ cannot be more than one activity running per instance.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10AsyncProxy10AsyncProxy8onResultFS0_FGSqP__T_"></a>
-                    <a name="//apple_ref/swift/Method/onResult(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10AsyncProxy10AsyncProxy8onResultFS0_FGSqP__T_">onResult(_:)</a>
+                    <a name="/s:FC12AsyncCommand17AsyncMacroCommand7executeERR"></a>
+                    <a name="//apple_ref/swift/Method/execute(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12AsyncCommand17AsyncMacroCommand7executeERR">execute(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -198,15 +224,16 @@ cannot be more than one activity running per instance.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This method is called by a service when the return value has been received.
-Optionally override this method in your subclass to manage or prepare the result followed by call to super for the responder&rsquo;s result call</p>
+                        <p>Starts execution of this <code>AsyncMacroCommand</code>&rsquo;s <em>SubCommands</em>.</p>
+
+<p>The <em>SubCommands</em> will be called in First In/First Out (FIFO) order.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">onResult</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">execute</span><span class="p">(</span><span class="nv">notification</span><span class="p">:</span> <span class="kt">INotification</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -217,12 +244,12 @@ Optionally override this method in your subclass to manage or prepare the result
                             <tr>
                               <td>
                                 <code>
-                                <em>data</em>
+                                <em>notification</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Contains the information returned from the request.</p>
+                                  <p>the <code>INotification</code> object to be passsed to each <em>SubCommand</em>.</p>
 
                                 </div>
                               </td>
@@ -236,9 +263,9 @@ Optionally override this method in your subclass to manage or prepare the result
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10AsyncProxy10AsyncProxy7onFaultFS0_FGSqP__T_"></a>
-                    <a name="//apple_ref/swift/Method/onFault(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10AsyncProxy10AsyncProxy7onFaultFS0_FGSqP__T_">onFault(_:)</a>
+                    <a name="/s:vC12AsyncCommand17AsyncMacroCommand10onCompleteGSqFT_T__"></a>
+                    <a name="//apple_ref/swift/Property/onComplete" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12AsyncCommand17AsyncMacroCommand10onCompleteGSqFT_T__">onComplete</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -246,37 +273,16 @@ Optionally override this method in your subclass to manage or prepare the result
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This method is called by a service when an error has been received.
-Optionally override this method in your subclass to manage or prepare the error followed by call to super for the responder&rsquo;s fault call</p>
+                        <p>Get or set the callback for a parent <code>AsyncMacroCommand</code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">onFault</span><span class="p">(</span><span class="nv">info</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">())?</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>info</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Contains the information about the error that occured.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                     </section>
                   </div>

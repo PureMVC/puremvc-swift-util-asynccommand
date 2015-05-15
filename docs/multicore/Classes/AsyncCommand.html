@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>IAsyncProxy Protocol Reference</title>
+    <title>AsyncCommand Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -9,19 +9,19 @@
     <script src="../js/jazzy.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/IAsyncProxy" class="dashAnchor"></a>
-    <a title="IAsyncProxy Protocol Reference"></a>
+    <a name="//apple_ref/swift/Class/AsyncCommand" class="dashAnchor"></a>
+    <a title="AsyncCommand Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
-        <p class="header-right"><a href="https://github.com/PureMVC/puremvc-swift-util-asyncproxy/multicore"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="https://github.com/PureMVC/puremvc-swift-util-asynccommand/wiki"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        IAsyncProxy Protocol Reference
+        AsyncCommand Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -31,7 +31,10 @@
           <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/AsyncProxy.html">AsyncProxy</a>
+                <a href="../Classes/AsyncCommand.html">AsyncCommand</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncMacroCommand.html">AsyncMacroCommand</a>
               </li>
             </ul>
           </li>
@@ -39,10 +42,7 @@
           <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/IAsyncProxy.html">IAsyncProxy</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/IResponder.html">IResponder</a>
+                <a href="../Protocols/IAsyncCommand.html">IAsyncCommand</a>
               </li>
             </ul>
           </li>
@@ -51,8 +51,13 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>IAsyncProxy</h1>
-            <p>Protocol to be adopted by an Asynchronous Proxy</p>
+            <h1>AsyncCommand</h1>
+            <p>A base <code>IAsyncCommand</code> implementation.</p>
+
+<p>Your subclass should override the <code>execute</code>
+method where your business logic will handle the <code>INotification</code>. </p>
+
+<p><code>@see org.puremvc.swift.multicore.utilities.asynccommand.patterns.command.AsyncMacroCommand AsyncMacroCommand</code></p>
 
           </section>
           <section class="section task-group-section">
@@ -61,9 +66,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP10AsyncProxy11IAsyncProxy11asyncActionUS0___FQPS0_FTPS_10IResponder_5tokenGSqP___T_"></a>
-                    <a name="//apple_ref/swift/Method/asyncAction(_:token:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP10AsyncProxy11IAsyncProxy11asyncActionUS0___FQPS0_FTPS_10IResponder_5tokenGSqP___T_">asyncAction(_:token:)</a>
+                    <a name="/s:FC12AsyncCommand12AsyncCommandcERR"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12AsyncCommand12AsyncCommandcERR">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -71,14 +76,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initiate an async activity</p>
+                        <p>Constructor.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">asyncAction</span><span class="p">(</span><span class="nv">responder</span><span class="p">:</span> <span class="kt">IResponder</span><span class="p">,</span> <span class="nv">token</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{}</span></code></pre>
 
                         </div>
                       </div>
@@ -88,9 +93,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP10AsyncProxy11IAsyncProxy8onResultUS0___FQPS0_FGSqP__T_"></a>
-                    <a name="//apple_ref/swift/Method/onResult(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP10AsyncProxy11IAsyncProxy8onResultUS0___FQPS0_FGSqP__T_">onResult(_:)</a>
+                    <a name="/s:vC12AsyncCommand12AsyncCommand10onCompleteGSqFT_T__"></a>
+                    <a name="//apple_ref/swift/Property/onComplete" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12AsyncCommand12AsyncCommand10onCompleteGSqFT_T__">onComplete</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -98,16 +103,36 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This method is called by a service when the return value has been received.</p>
+                        <p>Registers the callback for a parent <code>AsyncMacroCommand</code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">onResult</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">())?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>AsyncMacroCommand</code> method to call on completion</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -115,9 +140,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP10AsyncProxy11IAsyncProxy7onFaultUS0___FQPS0_FGSqP__T_"></a>
-                    <a name="//apple_ref/swift/Method/onFault(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP10AsyncProxy11IAsyncProxy7onFaultUS0___FQPS0_FGSqP__T_">onFault(_:)</a>
+                    <a name="/s:FC12AsyncCommand12AsyncCommand15commandCompleteFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/commandComplete()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12AsyncCommand12AsyncCommand15commandCompleteFS0_FT_T_">commandComplete()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -125,14 +150,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This method is called by a service when an error has been received.</p>
+                        <p>Notify the parent <code>AsyncMacroCommand</code> that this command is complete.</p>
+
+<p>Call this method from your subclass to signify that your asynchronous command
+has finished.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">onFault</span><span class="p">(</span><span class="nv">info</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">commandComplete</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>

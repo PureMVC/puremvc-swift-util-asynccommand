@@ -13,7 +13,7 @@
     <header>
       <div class="content-wrapper">
         <p><a href="index.html"> Docs</a> (100% documented)</p>
-        <p class="header-right"><a href="https://github.com/PureMVC/puremvc-swift-util-asyncproxy/multicore"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="https://github.com/PureMVC/puremvc-swift-util-asynccommand/multicore"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -30,7 +30,10 @@
           <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/AsyncProxy.html">AsyncProxy</a>
+                <a href="Classes/AsyncCommand.html">AsyncCommand</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AsyncMacroCommand.html">AsyncMacroCommand</a>
               </li>
             </ul>
           </li>
@@ -38,10 +41,7 @@
           <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/IAsyncProxy.html">IAsyncProxy</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/IResponder.html">IResponder</a>
+                <a href="Protocols/IAsyncCommand.html">IAsyncCommand</a>
               </li>
             </ul>
           </li>
@@ -60,9 +60,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C10AsyncProxy10AsyncProxy"></a>
-                    <a name="//apple_ref/swift/Class/AsyncProxy" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C10AsyncProxy10AsyncProxy">AsyncProxy</a>
+                    <a name="/s:C12AsyncCommand12AsyncCommand"></a>
+                    <a name="//apple_ref/swift/Class/AsyncCommand" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C12AsyncCommand12AsyncCommand">AsyncCommand</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -70,28 +70,77 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A base <code>IAsyncProxy</code> implementation.</p>
+                        <p>A base <code>IAsyncCommand</code> implementation.</p>
 
-<p>It allows the creator to associate data (a token) 
-and methods that should be called when a request is completed.</p>
+<p>Your subclass should override the <code>execute</code>
+method where your business logic will handle the <code>INotification</code>. </p>
 
-<p>Your subclass should override the <code>asyncAction</code>
-method where your domain logic will handle the async operation. 
-Must call super to set responder and the token.</p>
+<p><code>@see org.puremvc.swift.multicore.utilities.asynccommand.patterns.command.AsyncMacroCommand AsyncMacroCommand</code></p>
 
-<p>Instantiate as a proxy, with or without a name. The async activity 
-is started by invoking the <code>asyncAction</code> method. There
-cannot be more than one activity running per instance.</p>
-
-<p><code>@see org.puremvc.swift.multicore.utilities.asyncproxy.patterns.proxy.AsyncProxy AsyncProxy</code></p>
-
-                        <a href="Classes/AsyncProxy.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/AsyncCommand.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AsyncProxy</span><span class="p">:</span> <span class="kt">Proxy</span><span class="p">,</span> <span class="kt">IAsyncProxy</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AsyncCommand</span><span class="p">:</span> <span class="kt">SimpleCommand</span><span class="p">,</span> <span class="kt">IAsyncCommand</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C12AsyncCommand17AsyncMacroCommand"></a>
+                    <a name="//apple_ref/swift/Class/AsyncMacroCommand" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C12AsyncCommand17AsyncMacroCommand">AsyncMacroCommand</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A base <code>ICommand</code> implementation that executes other
+<code>ICommand</code>s asynchronously.</p>
+
+<p>An <code>AsyncMacroCommand</code> maintains a list of
+closures returning <code>ICommand</code> references called <em>SubCommands</em>.</p>
+
+<p>When <code>execute</code> is called, the <code>AsyncMacroCommand</code>
+caches a reference to the <code>INotification</code> and calls
+<code>nextCommand</code>.</p>
+
+<p>If there are still <em>SubCommands&rsquo;s to be executed,
+the <code>nextCommand</code> method instantiates and calls <code>execute</code>
+on each of its *SubCommands</em> in turn. Each <em>SubCommand</em> will be passed
+a reference to the original <code>INotification</code> that was passed to the
+<code>AsyncMacroCommand</code>&rsquo;s <code>execute</code> method. If the
+<em>SubCommand</em> to execute is an <code>IAsyncCommand</code>, the
+next <em>SubCommand</em> will not be executed until the previous
+<code>IAsyncCommand</code> has called its <em>commandComplete</em> method.</p>
+
+<p>Unlike <code>AsyncCommand</code> and <code>SimpleCommand</code>, your subclass
+should not override <code>execute</code>, but instead, should
+override the <code>initializeAsyncMacroCommand</code> method,
+calling <code>addSubCommand</code> once for each <em>SubCommand</em>
+to be executed.</p>
+
+<p><code>@see org.puremvc.as3.multicore.patterns.command.AsyncCommand AsyncCommand</code></p>
+
+                        <a href="Classes/AsyncMacroCommand.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AsyncMacroCommand</span><span class="p">:</span> <span class="kt">Notifier</span><span class="p">,</span> <span class="kt">IAsyncCommand</span><span class="p">,</span> <span class="kt">INotifier</span></code></pre>
 
                         </div>
                       </div>
