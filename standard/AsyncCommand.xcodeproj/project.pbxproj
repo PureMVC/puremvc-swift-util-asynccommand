@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		930B0AC31AFEF905001962B2 /* AsyncCommand.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B3DFA5271A591FBC009ECC42 /* AsyncCommand.framework */; };
+		A8DD74481C996B78008697B2 /* AsyncCommand1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD74421C996B78008697B2 /* AsyncCommand1.swift */; };
+		A8DD74491C996B78008697B2 /* AsyncCommand2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD74431C996B78008697B2 /* AsyncCommand2.swift */; };
+		A8DD744A1C996B78008697B2 /* AsyncCommandExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD74441C996B78008697B2 /* AsyncCommandExtend.swift */; };
+		A8DD744B1C996B78008697B2 /* AsyncCommandTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD74451C996B78008697B2 /* AsyncCommandTest.swift */; };
+		A8DD744C1C996B78008697B2 /* AsyncMacroCommandTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD74461C996B78008697B2 /* AsyncMacroCommandTest.swift */; };
+		A8DD744D1C996B78008697B2 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DD74471C996B78008697B2 /* Resource.swift */; };
+		A8DD744F1C996BAD008697B2 /* PureMVC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DD744E1C996BAD008697B2 /* PureMVC.framework */; };
 		B3DFA5331A591FBC009ECC42 /* AsyncCommand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DFA5271A591FBC009ECC42 /* AsyncCommand.framework */; };
 		B3DFA54F1A59201D009ECC42 /* IAsyncCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DFA54A1A59201D009ECC42 /* IAsyncCommand.swift */; };
 		B3DFA5501A59201D009ECC42 /* AsyncCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DFA54D1A59201D009ECC42 /* AsyncCommand.swift */; };
@@ -49,6 +56,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A8DD74421C996B78008697B2 /* AsyncCommand1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCommand1.swift; sourceTree = "<group>"; };
+		A8DD74431C996B78008697B2 /* AsyncCommand2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCommand2.swift; sourceTree = "<group>"; };
+		A8DD74441C996B78008697B2 /* AsyncCommandExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCommandExtend.swift; sourceTree = "<group>"; };
+		A8DD74451C996B78008697B2 /* AsyncCommandTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCommandTest.swift; sourceTree = "<group>"; };
+		A8DD74461C996B78008697B2 /* AsyncMacroCommandTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncMacroCommandTest.swift; sourceTree = "<group>"; };
+		A8DD74471C996B78008697B2 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		A8DD744E1C996BAD008697B2 /* PureMVC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureMVC.framework; path = Frameworks/PureMVC.framework; sourceTree = "<group>"; };
 		B3DFA5271A591FBC009ECC42 /* AsyncCommand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AsyncCommand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DFA52B1A591FBC009ECC42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3DFA5321A591FBC009ECC42 /* AsyncCommandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsyncCommandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8DD744F1C996BAD008697B2 /* PureMVC.framework in Frameworks */,
 				B3DFA5331A591FBC009ECC42 /* AsyncCommand.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,11 +92,89 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A8DD743A1C996B78008697B2 /* org */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD743B1C996B78008697B2 /* puremvc */,
+			);
+			path = org;
+			sourceTree = "<group>";
+		};
+		A8DD743B1C996B78008697B2 /* puremvc */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD743C1C996B78008697B2 /* swift */,
+			);
+			path = puremvc;
+			sourceTree = "<group>";
+		};
+		A8DD743C1C996B78008697B2 /* swift */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD743D1C996B78008697B2 /* standard */,
+			);
+			path = swift;
+			sourceTree = "<group>";
+		};
+		A8DD743D1C996B78008697B2 /* standard */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD743E1C996B78008697B2 /* utilities */,
+			);
+			path = standard;
+			sourceTree = "<group>";
+		};
+		A8DD743E1C996B78008697B2 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD743F1C996B78008697B2 /* asynccommand */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+		A8DD743F1C996B78008697B2 /* asynccommand */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD74401C996B78008697B2 /* patterns */,
+			);
+			path = asynccommand;
+			sourceTree = "<group>";
+		};
+		A8DD74401C996B78008697B2 /* patterns */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD74411C996B78008697B2 /* command */,
+			);
+			path = patterns;
+			sourceTree = "<group>";
+		};
+		A8DD74411C996B78008697B2 /* command */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD74421C996B78008697B2 /* AsyncCommand1.swift */,
+				A8DD74431C996B78008697B2 /* AsyncCommand2.swift */,
+				A8DD74441C996B78008697B2 /* AsyncCommandExtend.swift */,
+				A8DD74451C996B78008697B2 /* AsyncCommandTest.swift */,
+				A8DD74461C996B78008697B2 /* AsyncMacroCommandTest.swift */,
+				A8DD74471C996B78008697B2 /* Resource.swift */,
+			);
+			path = command;
+			sourceTree = "<group>";
+		};
+		A8DD74501C996D4B008697B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8DD744E1C996BAD008697B2 /* PureMVC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B3DFA51D1A591FBC009ECC42 = {
 			isa = PBXGroup;
 			children = (
 				B3DFA5291A591FBC009ECC42 /* AsyncCommand */,
 				B3DFA5361A591FBC009ECC42 /* AsyncCommandTests */,
+				A8DD74501C996D4B008697B2 /* Frameworks */,
 				B3DFA5281A591FBC009ECC42 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +208,7 @@
 		B3DFA5361A591FBC009ECC42 /* AsyncCommandTests */ = {
 			isa = PBXGroup;
 			children = (
+				A8DD743A1C996B78008697B2 /* org */,
 				B3DFA5371A591FBC009ECC42 /* Supporting Files */,
 			);
 			path = AsyncCommandTests;
@@ -259,7 +353,9 @@
 		B3DFA51E1A591FBC009ECC42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0730;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = PureMVC;
 				TargetAttributes = {
 					B3DFA5261A591FBC009ECC42 = {
@@ -320,6 +416,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8DD74481C996B78008697B2 /* AsyncCommand1.swift in Sources */,
+				A8DD74491C996B78008697B2 /* AsyncCommand2.swift in Sources */,
+				A8DD744B1C996B78008697B2 /* AsyncCommandTest.swift in Sources */,
+				A8DD744D1C996B78008697B2 /* Resource.swift in Sources */,
+				A8DD744A1C996B78008697B2 /* AsyncCommandExtend.swift in Sources */,
+				A8DD744C1C996B78008697B2 /* AsyncMacroCommandTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +458,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -437,6 +540,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.puremvc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -458,6 +562,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.puremvc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -466,10 +571,7 @@
 		B3DFA5411A591FBC009ECC42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -477,6 +579,7 @@
 				INFOPLIST_FILE = AsyncCommandTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.puremvc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -484,13 +587,11 @@
 		B3DFA5421A591FBC009ECC42 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				INFOPLIST_FILE = AsyncCommandTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.puremvc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
