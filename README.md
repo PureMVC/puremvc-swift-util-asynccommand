@@ -12,7 +12,7 @@ The AsyncCommand utility offers a solution to the problem of executing a series 
 * [Mac OS](http://en.wikipedia.org/wiki/Mac_OS)
 
 ## Status
-Production - [Version 1.0](https://github.com/PureMVC/puremvc-swift-util-asynccommand/blob/master/VERSION)
+Production - [Version 1.1](https://github.com/PureMVC/puremvc-swift-util-asynccommand/blob/master/VERSION)
 
 ## License
 * PureMVC Swift Standard/MultiCore Utility – AsyncCommand - Copyright © 2015-2025 Saad Shams
