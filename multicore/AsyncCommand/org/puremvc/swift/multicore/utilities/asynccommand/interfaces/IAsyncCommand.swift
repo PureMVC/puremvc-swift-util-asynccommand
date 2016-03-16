@@ -16,7 +16,7 @@ public protocol IAsyncCommand: ICommand {
     /**
     Registers the callback for a parent `AsyncMacroCommand`.
 
-    :param: value	The `AsyncMacroCommand` method to call on completion
+    - parameter value:	The `AsyncMacroCommand` method to call on completion
     */
     var onComplete: (() -> ())? { get set }
 }

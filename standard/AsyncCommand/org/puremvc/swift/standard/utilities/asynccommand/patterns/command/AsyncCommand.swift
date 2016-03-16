@@ -27,7 +27,7 @@ public class AsyncCommand: SimpleCommand, IAsyncCommand {
     /**
     Registers the callback for a parent `AsyncMacroCommand`.
     *
-    :param: value The `AsyncMacroCommand` method to call on completion
+    - parameter value: The `AsyncMacroCommand` method to call on completion
     */
     public var onComplete: (() -> ())? {
         get { return _onComplete }

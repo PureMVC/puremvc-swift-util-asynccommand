@@ -36,7 +36,7 @@ to be executed.
 
 `@see org.puremvc.as3.multicore.patterns.command.AsyncCommand AsyncCommand`
 */
-public class AsyncMacroCommand: Notifier, IAsyncCommand, INotifier {
+public class AsyncMacroCommand: Notifier, IAsyncCommand {
     
     private var subCommands: [() -> ICommand]
     
@@ -87,7 +87,7 @@ public class AsyncMacroCommand: Notifier, IAsyncCommand, INotifier {
     The *SubCommands* will be called in First In/First Out (FIFO)
     order.
     
-    :param: closure reference returning `ICommand`.
+    - parameter closure: reference returning `ICommand`.
     */
     public func addSubCommand(closure: () -> ICommand) {
         subCommands.append(closure)
@@ -98,7 +98,7 @@ public class AsyncMacroCommand: Notifier, IAsyncCommand, INotifier {
     
     The *SubCommands* will be called in First In/First Out (FIFO) order.
     
-    :param: notification the `INotification` object to be passsed to each *SubCommand*.
+    - parameter notification: the `INotification` object to be passsed to each *SubCommand*.
     */
     public final func execute(notification: INotification) {
         self.notification = notification
@@ -113,10 +113,10 @@ public class AsyncMacroCommand: Notifier, IAsyncCommand, INotifier {
     */
     private func nextCommand() {
         if !subCommands.isEmpty {
-            var closure = subCommands.removeAtIndex(0)
-            var commandInstance = closure()
+            let closure = subCommands.removeAtIndex(0)
+            let commandInstance = closure()
             
-            var isAsync = (commandInstance as? AsyncMacroCommand) != nil || (commandInstance as? AsyncCommand) != nil
+            let isAsync = (commandInstance as? AsyncMacroCommand) != nil || (commandInstance as? AsyncCommand) != nil
             
             if isAsync {
                 if (commandInstance as? AsyncCommand != nil) {
