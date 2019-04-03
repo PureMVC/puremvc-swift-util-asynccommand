@@ -9,14 +9,16 @@ The AsyncCommand utility offers a solution to the problem of executing a series 
 ## Platforms / Technologies
 * [Swift](http://en.wikipedia.org/wiki/Swift_(programming_language))
 * [iOS](http://en.wikipedia.org/wiki/IOS)
-* [Mac OS](http://en.wikipedia.org/wiki/Mac_OS)
+* [watchOS](https://en.wikipedia.org/wiki/WatchOS)
+* [tvOS](https://en.wikipedia.org/wiki/TvOS)
+* [MacOS](https://en.wikipedia.org/wiki/MacOS)
 
 ## Status
-Production - [Version 1.1](https://github.com/PureMVC/puremvc-swift-util-asynccommand/blob/master/VERSION)
+Production - [Version 1.2](https://github.com/PureMVC/puremvc-swift-util-asynccommand/blob/master/VERSION)
 
 ## License
-* PureMVC Swift Standard/MultiCore Utility – AsyncCommand - Copyright © 2015-2025 Saad Shams
-* PureMVC - Copyright © 2015-2025 Futurescale, Inc.
+* PureMVC Swift Standard/MultiCore Utility – AsyncCommand - Copyright © 2015-2019 Saad Shams
+* PureMVC - Copyright © 2015-2019 Futurescale, Inc.
 * All rights reserved.
 
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

@@ -14,13 +14,13 @@ class AsyncCommand1: AsyncCommand {
     
     var resource: Resource?
     
-    override func execute(notification: INotification) {
+    override func execute(_ notification: INotification) {
         resource = notification.body as? Resource
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.resource?.i += 1;
             self.onComplete?()
-        })
+        }
     }
     
     deinit {

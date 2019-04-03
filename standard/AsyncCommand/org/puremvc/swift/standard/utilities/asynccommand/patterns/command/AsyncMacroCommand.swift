@@ -91,7 +91,7 @@ public class AsyncMacroCommand: Notifier, IAsyncCommand {
     
     - parameter closure: reference returning `ICommand`.
     */
-    public func addSubCommand(closure: () -> ICommand) {
+    public func addSubCommand(closure: @escaping () -> ICommand) {
         subCommands.append(closure)
     }
     
@@ -102,7 +102,7 @@ public class AsyncMacroCommand: Notifier, IAsyncCommand {
     
     - parameter notification: the `INotification` object to be passsed to each *SubCommand*.
     */
-    public final func execute(notification: INotification) {
+    public final func execute(_ notification: INotification) {
         self.notification = notification
         nextCommand()
     }
@@ -115,7 +115,7 @@ public class AsyncMacroCommand: Notifier, IAsyncCommand {
     */
     private func nextCommand() {
         if !subCommands.isEmpty {
-            let closure = subCommands.removeAtIndex(0)
+            let closure = subCommands.remove(at: 0)
             let commandInstance = closure()
             
             let isAsync = (commandInstance as? AsyncMacroCommand) != nil || (commandInstance as? AsyncCommand) != nil

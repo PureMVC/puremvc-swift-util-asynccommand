@@ -4,23 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AsyncCommand.xcscheme</key>
+		<key>AsyncCommand.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
-		</dict>
-	</dict>
-	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>B3A9177C1A5920E300C75868</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B3A917871A5920E300C75868</key>
-		<dict>
-			<key>primary</key>
-			<true/>
 		</dict>
 	</dict>
 </dict>

@@ -1,3 +1,11 @@
 framework module AsyncCommand {
+  umbrella header "AsyncCommand.h"
+
+  export *
+  module * { export * }
+}
+
+module AsyncCommand.Swift {
     header "AsyncCommand-Swift.h"
+    requires objc
 }

@@ -17,7 +17,7 @@ method where your business logic will handle the `INotification`.
 *
 @see org.puremvc.swift.multicore.utilities.asynccommand.patterns.command.AsyncMacroCommand AsyncMacroCommand
 */
-public class AsyncCommand: SimpleCommand, IAsyncCommand {
+open class AsyncCommand: SimpleCommand, IAsyncCommand {
     
     private var _onComplete: (() -> ())?
     

@@ -35,7 +35,7 @@ class AsyncMacroCommandTest: XCTestCase {
         asyncMacroCommand.addSubCommand() {AsyncCommand1()}
         asyncMacroCommand.addSubCommand() {AsyncCommand2()}
         
-        let readyExpectation = expectationWithDescription("ready")
+        let readyExpectation = expectation(description: "ready")
         
         asyncMacroCommand.onComplete = {
             readyExpectation.fulfill()
@@ -43,7 +43,7 @@ class AsyncMacroCommandTest: XCTestCase {
         
         asyncMacroCommand.execute(notification)
         
-        waitForExpectationsWithTimeout(5, handler: { error in
+        waitForExpectations(timeout: 5, handler: { error in
             XCTAssertNil(error, "Error")
             XCTAssertTrue(resource.i == 2, "Resource.i should 2")
         })
@@ -56,7 +56,7 @@ class AsyncMacroCommandTest: XCTestCase {
         asyncMacroCommand.addSubCommand() {AsyncCommand1()}
         asyncMacroCommand.addSubCommand() {AsyncCommand2()}
         
-        let readyExpectation = expectationWithDescription("ready")
+        let readyExpectation = expectation(description: "ready")
         
         asyncMacroCommand.onComplete = {
             readyExpectation.fulfill()
@@ -64,7 +64,7 @@ class AsyncMacroCommandTest: XCTestCase {
         
         asyncMacroCommand.execute(notification)
         
-        waitForExpectationsWithTimeout(1, handler: { error in
+        waitForExpectations(timeout: 1, handler: { error in
             XCTAssertNil(error, "Error")
             XCTAssertTrue(resource.released == 2, "Resource.released should be 2")
         })
@@ -72,7 +72,7 @@ class AsyncMacroCommandTest: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
